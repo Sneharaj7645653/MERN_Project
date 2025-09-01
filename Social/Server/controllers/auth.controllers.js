@@ -1,5 +1,5 @@
 import User from "../models/user.model.js";
-
+import bcrypt from "bcryptjs";
 export const signUp = async (req, res) => {
     try {
         console.log("Request body:", req.body);
@@ -30,12 +30,16 @@ export const signUp = async (req, res) => {
                 .json({ message: "Password must be at least 6 characters" });
         }
 
+
+        // Hash password
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(password, salt);
         // Create new user
         const newUser = new User({
             name,
             userName,
             email,
-            password,
+            hashedPassword,
         });
 
         await newUser.save();
