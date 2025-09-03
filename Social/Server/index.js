@@ -4,7 +4,6 @@ import connectDB from './config/db.js';
 import authRouter from './routes/auth.routes.js';
 
 
-// Load environment variables
 dotenv.config();
 
 const app = express();
@@ -16,12 +15,16 @@ connectDB();
 
 // Middleware
 app.use(express.json());
-app.use('/api/auth', authRouter);
+
+
+// Routes
+app.use('/api/auth' , authRouter)
+
 
 // Basic route
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
+// app.get('/', (req, res) => {
+//   res.send('Hello World!');
+// });
 
 // Start server
 app.listen(PORT, () => {

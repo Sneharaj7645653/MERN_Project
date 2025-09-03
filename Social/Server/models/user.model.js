@@ -1,13 +1,11 @@
 import mongoose from "mongoose";
 
-
-
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
   },
-  userName:{
+  userName: {
     type: String,
     required: true,
     unique: true,
@@ -17,25 +15,30 @@ const userSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+  
   password: {
     type: String,
     required: true,
   },
-   profilePic: {
+
+  profilePic: {
     type: String,
     default: "",
   },
+
   bio: {
     type: String,
     default: "",
   },
+  
   followers: [],
   following: [],
   posts: [],
   reels: [],
-  stories: [],
-  },{ timestamps: true });
-
+  story: [],
+  
+} , {timestamps: true});
 
 const User = mongoose.model("User", userSchema);
+
 export default User;
